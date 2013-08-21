@@ -1,0 +1,60 @@
+var http    = require('request');
+
+var defaults = {
+	hostname: 'api.stormondemand.com',
+	version:  'v1'
+};
+
+function stormApi (settings) {
+	this._hostname = settings.hostname || defaults.hostname;
+	this._version  = settings.version  || defaults.version;
+	this._username = settings.username;
+	if (! this._username) {
+		throw "Username is a required param";
+	}
+	this._password = settings.password;
+	if (! this._password) {
+		throw "Password is a required param";
+	}
+
+	/* generate the namespaces that will house the methods later */
+{{#namespaces}}
+	this{{.}} = {};
+{{/namespaces}}
+
+	/* we generate the methods for each object so we can bind them with 'this'
+	 * thus allowing us to reference instance data from within the function
+	 * - there may be a cleaner way to do this, so patches welcome
+	 */
+{{#methods}}
+	this{{jsNs}}.{{method}} = function (params, callback) {
+		return this.sendApiRequest('{{{apiNs}}}/{{method}}.json', params, callback);
+	}.bind(this);
+
+{{/methods}}
+}
+
+stormApi.prototype = Object.prototype;
+
+stormApi.prototype.sendApiRequest = function (method, params, callback) {
+	var auth = {
+		user: this._username,
+		pass: this._password
+	};
+	var options = {
+		url: 'https://' + this._hostname + '/' + this._version + '/' + method,
+		auth: auth,
+		json: { params: params },
+		encoding: 'utf8'
+	};
+	http.post(options, function (error, response, body) {
+		if (response.statusCode == 200) {
+			callback(body);
+		}
+		else {
+			throw "Non-200 response [" + response.statusCode + "]: " + body;
+		}
+	});
+};
+
+module.exports = stormApi;
