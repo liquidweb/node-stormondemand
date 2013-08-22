@@ -1,4 +1,4 @@
-node-stormapi
+node-stormondemand
 =============
 
 Node.js client bindings for the StormOnDemand API.  These are fairly barebones at
@@ -7,10 +7,16 @@ functions.
 
 Documentation for the API can be found at: https://www.stormondemand.com/api/
 
+To install:
+
+```
+npm install stormondemand
+```
+
 How to use this client:
 
 ```
-var stormAPI = require('stormapi');
+var stormAPI = require('stormondemand');
 var client   = new stormAPI({ username: "<fill-me-in>", password: "<fill-me-in>" });
 
 // Get my account history
