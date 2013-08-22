@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>node-stormondemand by liquidweb</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>node-stormondemand</h1>
+        <p>Node.js client bindings for the StormOnDemand API</p>
+
+        <p class="view"><a href="https://github.com/liquidweb/node-stormondemand">View the Project on GitHub <small>liquidweb/node-stormondemand</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/liquidweb/node-stormondemand/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/liquidweb/node-stormondemand/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/liquidweb/node-stormondemand">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="node-stormondemand" class="anchor" href="#node-stormondemand"><span class="octicon octicon-link"></span></a>node-stormondemand</h1>
+
+<p>Node.js client bindings for the StormOnDemand API.  These are fairly barebones at
+the moment and simply provide an easy one-to-one mapping for API methods to Javascript
+functions.</p>
+
+<p>Documentation for the API can be found at: <a href="https://www.stormondemand.com/api/">https://www.stormondemand.com/api/</a></p>
+
+<p>To install:</p>
+
+<pre><code>npm install stormondemand
+</code></pre>
+
+<p>How to use this client:</p>
+
+<pre><code>var stormAPI = require('stormondemand');
+var client   = new stormAPI({ username: "&lt;fill-me-in&gt;", password: "&lt;fill-me-in&gt;" });
+
+// Get my account history
+client.Notifications.all({}, function (res) {
+    for (var i=0; i&lt;res.page_size; i++) {
+        console.log(res.items[i]);
+    }
+});
+
+// Create an actual Storm server
+client.Storm.Server.create({
+    config_id: 2,
+    template: 'CENTOS_62_CPANEL',
+    domain: 'my.storm-server.fake'
+}, function (res) {
+    console.log(res);
+});
+</code></pre>
+
+<p>This client is programmatically generated from current API documentation.  In order to regenerate
+the client library for new methods, it's extremely simple.  It requires an additional installation
+of the mustache templating engine.  With that installed, it's a simple process to regenerate
+the client:</p>
+
+<pre><code>npm install mustache
+cd node-stormondemand
+node lib/generate.js
+</code></pre>
+
+<p>This will download the current documentation, and regenerate index.js with all the current
+API methods.</p>
+
+<p>For testing, we use nodeunit.  For more information on installing and setting up nodeunit,
+please refer to <a href="https://github.com/caolan/nodeunit">https://github.com/caolan/nodeunit</a></p>
+
+<p>Given that being able to actually test the API requires valid API credentials, those can be
+set in two ways.  First, you can create a .stormondemand.json file in your HOME folder.</p>
+
+<pre><code>{
+    "username": "&lt;fill-me-in&gt;",
+    "password": "&lt;fill-me-in&gt;"
+}
+</code></pre>
+
+<p>The tests will pick this file up and use it for the parameters to creating the API client.</p>
+
+<p>Alternatively, you can set environment variables:</p>
+
+<pre><code>export STORMONDEMAND_USERNAME='&lt;fill-me-in&gt;'
+export STORMONDEMAND_PASSWORD='&lt;fill-me-in&gt;'
+</code></pre>
+
+<p>To run the tests:</p>
+
+<pre><code>cd node-stormondemand
+nodeunit .
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/liquidweb">liquidweb</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
