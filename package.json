@@ -1,5 +1,5 @@
 {
-  "name": "stormapi",
+  "name": "stormondemand",
   "description": "A StormOnDemand.com API client library",
   "tags": [
     "api",
@@ -11,10 +11,10 @@
   "author": "Greg Hill <gnhill@liquidweb.com>",
   "repository": {
     "type": "git",
-    "url": "http://github.com/liquidweb/node-stormapi.git"
+    "url": "http://github.com/liquidweb/node-stormondemand.git"
   },
   "bugs": {
-    "url": "http://github.com/liquidweb/node-stormapi/issues"
+    "url": "http://github.com/liquidweb/node-stormondemand/issues"
   },
   "main": "index.js",
   "dependencies": {
