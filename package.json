@@ -22,9 +22,13 @@
     "request":    ">=2.27.0"
   },
   "devDependencies": {
-    "mustache":   ">=0.7.2"
+    "mustache":   ">=0.7.2",
+    "nodeunit":   ">=0.8.1"
   },
   "engines": {
     "node": ">=0.10"
+  },
+  "scripts": {
+    "test": "nodeunit ."
   }
 }
