@@ -7,7 +7,7 @@
     "storm",
     "stormondemand"
   ],
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": "Greg Hill <gnhill@liquidweb.com>",
   "repository": {
     "type": "git",
@@ -19,11 +19,11 @@
   "main": "index.js",
   "dependencies": {
     "underscore": ">=1.5.1",
-    "request":    ">=2.27.0"
+    "request": ">=2.27.0"
   },
   "devDependencies": {
-    "mustache":   ">=0.7.2",
-    "nodeunit":   ">=0.8.1"
+    "mustache": ">=0.7.2",
+    "nodeunit": ">=0.8.1"
   },
   "engines": {
     "node": ">=0.10"
